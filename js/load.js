@@ -12,7 +12,10 @@ var loadState = {
 
 		// Load all assets
 		game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);
-		// ...
+		
+        game.load.image('sfondo', 'assets/sfondo_test.jpg');
+        game.load.image('man', 'assets/man.png');
+
 	},
 
 	create: function() { 
