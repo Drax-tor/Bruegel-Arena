@@ -11,10 +11,9 @@ var loadState = {
 		game.load.setPreloadSprite(progressBar);
 
 		// Load all assets
-		game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);
-		
-        game.load.image('sfondo', 'assets/sfondo_test.jpg');
-        game.load.image('man', 'assets/man.png');
+		game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);		
+        game.load.image('sfondo', 'assets/sfondo.jpg');
+        game.load.image('joker', 'assets/joker.png');
 
 	},
 

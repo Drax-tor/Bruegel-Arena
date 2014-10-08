@@ -6,7 +6,7 @@ var menuState = {
 		nameLabel.anchor.setTo(0.5, 0.5);
 
 		// How to start the game
-		var startLabel = game.add.text(game.world.centerX, game.world.height-80, 'press the up arrow key to start', { font: '25px Arial', fill: '#ffffff' });
+		var startLabel = game.add.text(game.world.centerX, game.world.height-80, 'press SPACEBAR key to start', { font: '25px Arial', fill: '#ffffff' });
 		startLabel.anchor.setTo(0.5, 0.5);	
 		game.add.tween(startLabel).to({angle: -2}, 500).to({angle:2}, 500).loop().start(); 
 
@@ -18,8 +18,8 @@ var menuState = {
 		}
 
 		// Start the game when the up arrow key is pressed
-		var upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-		upKey.onDown.addOnce(this.start, this);
+		var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		spaceKey.onDown.addOnce(this.start, this);
 	},
 
 	toggleSound: function() {
