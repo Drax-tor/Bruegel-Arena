@@ -18,6 +18,7 @@ var loadState = {
         game.load.image('sfondo', 'assets/sfondo.jpg');
         game.load.image('dame', 'assets/dame.png');
         game.load.spritesheet('joker', 'assets/joker.png', 75, 137, 4);
+        game.load.spritesheet('bullet', 'assets/bullets.png', 90, 67, 9);
 
 	},
 

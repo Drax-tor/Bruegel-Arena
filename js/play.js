@@ -1,8 +1,17 @@
+var dame1;
+var dame2;
+var dame3;
+var dame4;
+var timeDame = 2;
+
 var playState = {
    
 	create: function() {
 
         var sfondo = game.add.image(0, 0, 'sfondo');  
+        
+        //  Set the world (global) gravity
+        game.physics.arcade.gravity.y = 100;
         
         //Inserisco il joker
         this.setJoker();
@@ -10,7 +19,10 @@ var playState = {
         speed = 150;
         
         //Inserisco gli input del gioco
-        this.setImput();
+        this.setInput();
+        
+        //game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, this.createDame(1), this);
+        game.time.events.loop(Phaser.Timer.SECOND * 0.5, this.createDame, this);
         
 
 	},
@@ -37,11 +49,12 @@ var playState = {
         joker.animations.add('walk');
         joker.animations.play('walk', 6, true);
         game.physics.enable(joker, Phaser.Physics.ARCADE);
+        joker.body.allowGravity = false;
         joker.body.bounce.x = 0.2;
         joker.body.collideWorldBounds = true;
     },
     
-    setImput: function(){
+    setInput: function(){
         cursors = game.input.keyboard.createCursorKeys();
         aButton = game.input.keyboard.addKey(Phaser.Keyboard.A);
         dButton = game.input.keyboard.addKey(Phaser.Keyboard.D);
@@ -54,9 +67,84 @@ var playState = {
     goRight: function(speed){
        joker.body.velocity.x = speed;
     },
+    
+    createDame: function(){
+        num = game.rnd.integerInRange(1, 4);
+        switch(num){
+            case 1:
+                if(dame1!=null){
+                    if(dame1.exists){
+                        dame1.kill();
+                    }else{
+                        dame1 = game.add.sprite(194, 261, 'dame');
+                        dame1.anchor.setTo(0.5, 1);
+                    }                 
+                } else{
+                    dame1 = game.add.sprite(194, 261, 'dame');
+                    dame1.anchor.setTo(0.5, 1);
+                }                
+                break;
+            case 2:
+                if(dame2!=null){
+                    if(dame2.exists){
+                        dame2.kill();
+                    }else{
+                        dame2 = game.add.sprite(291, 261, 'dame'); 
+                        dame2.anchor.setTo(0.5, 1);
+                    }                 
+                } else{
+                    dame2 = game.add.sprite(291, 261, 'dame'); 
+                    dame2.anchor.setTo(0.5, 1);
+                }    
+                
+                break;
+            case 3:
+                if(dame3!=null){
+                    if(dame3.exists){
+                        dame3.kill();
+                    }else{
+                        dame3 = game.add.sprite(475, 261, 'dame');
+                        dame3.anchor.setTo(0.5, 1);
+                        dame3.scale.x = -1;
+                    }                 
+                } else{
+                    dame3 = game.add.sprite(475, 261, 'dame');
+                    dame3.anchor.setTo(0.5, 1);
+                    dame3.scale.x = -1;
+                }    
+                break;
+            case 4:
+                if(dame4!=null){
+                    if(dame4.exists){
+                        dame4.kill();
+                    }else{
+                       dame4 = game.add.sprite(574, 261, 'dame');
+                        dame4.anchor.setTo(0.5, 1);
+                        dame4.scale.x = -1;
+                    }                 
+                } else{
+                    dame4 = game.add.sprite(574, 261, 'dame');
+                    dame4.anchor.setTo(0.5, 1);
+                    dame4.scale.x = -1;
+                }    
+                break;
+            case 5:
+                dame1 = game.add.sprite(194, 261, 'dame')
+                dame1.anchor.setTo(0.5, 1); 
+                
+                dame2 = game.add.sprite(291, 261, 'dame')
+                dame2.anchor.setTo(0.5, 1);
+                
+                dame3 = game.add.sprite(475, 261, 'dame')
+                dame3.anchor.setTo(0.5, 1);
+                dame3.scale.x = -1;
+                
+                dame4 = game.add.sprite(574, 261, 'dame')
+                dame4.anchor.setTo(0.5, 1);
+                dame4.scale.x = -1;
+                break;
+        }
+    },
 
 };
 
-function spawnDame(a){
-    game.add.sprite(100, 200, 'dame');
-};
