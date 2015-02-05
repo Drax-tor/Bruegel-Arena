@@ -4,6 +4,8 @@ var dame3;
 var dame4;
 var timeDame = 2;
 
+var bulletsPool;
+
 var playState = {
    
 	create: function() {
@@ -20,6 +22,12 @@ var playState = {
         
         //Inserisco gli input del gioco
         this.setInput();
+        
+        //Creo il pool di proiettili
+        bulletsPool = game.add.group();
+        //bulletsPool.createMultiple(10, 'bullet');
+        bulletsPool.enableBody = true;
+        bulletsPool.physicsBodyType = Phaser.Physics.ARCADE;
         
         //game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, this.createDame(1), this);
         game.time.events.loop(Phaser.Timer.SECOND * 0.5, this.createDame, this);
@@ -68,6 +76,15 @@ var playState = {
        joker.body.velocity.x = speed;
     },
     
+    createBullet: function(numSprite, posX, posY){
+        var currentBullet = bulletsPool.create(posX, posY, 'bullet');
+        currentBullet.lifespan = 2000; // kill after 2000ms
+        currentBullet.frame = numSprite;
+        currentBullet.scale.x = 0.5;
+        currentBullet.scale.y = 0.5;
+        //currentBullet.body.velocity.y = speed;
+    },
+    
     createDame: function(){
         num = game.rnd.integerInRange(1, 4);
         switch(num){
@@ -78,10 +95,12 @@ var playState = {
                     }else{
                         dame1 = game.add.sprite(194, 261, 'dame');
                         dame1.anchor.setTo(0.5, 1);
+                        this.createBullet(0, 194, 261 - 35);
                     }                 
                 } else{
                     dame1 = game.add.sprite(194, 261, 'dame');
                     dame1.anchor.setTo(0.5, 1);
+                    this.createBullet(0, 194, 261 - 35);
                 }                
                 break;
             case 2:
@@ -91,10 +110,12 @@ var playState = {
                     }else{
                         dame2 = game.add.sprite(291, 261, 'dame'); 
                         dame2.anchor.setTo(0.5, 1);
+                        this.createBullet(0, 291, 261 - 35);
                     }                 
                 } else{
                     dame2 = game.add.sprite(291, 261, 'dame'); 
                     dame2.anchor.setTo(0.5, 1);
+                    this.createBullet(0, 291, 261 - 35);
                 }    
                 
                 break;
@@ -106,11 +127,13 @@ var playState = {
                         dame3 = game.add.sprite(475, 261, 'dame');
                         dame3.anchor.setTo(0.5, 1);
                         dame3.scale.x = -1;
+                        this.createBullet(0, 435, 261 - 35);
                     }                 
                 } else{
                     dame3 = game.add.sprite(475, 261, 'dame');
                     dame3.anchor.setTo(0.5, 1);
                     dame3.scale.x = -1;
+                    this.createBullet(0, 435, 261 - 35);
                 }    
                 break;
             case 4:
@@ -121,11 +144,13 @@ var playState = {
                        dame4 = game.add.sprite(574, 261, 'dame');
                         dame4.anchor.setTo(0.5, 1);
                         dame4.scale.x = -1;
+                        this.createBullet(0, 534, 261 - 35);
                     }                 
                 } else{
                     dame4 = game.add.sprite(574, 261, 'dame');
                     dame4.anchor.setTo(0.5, 1);
                     dame4.scale.x = -1;
+                    this.createBullet(0, 534, 261 - 35);
                 }    
                 break;
             case 5:
